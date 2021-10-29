@@ -6,20 +6,26 @@ import {
   Text,
   Button,
   Image,
-  List,
-  ListItem,
-  OrderedList,
   Link,
 } from "@chakra-ui/react";
-import Head from "next/head";
-import IPhone from "../public/IPhone_view.png";
-import HostForm from "../components/form";
+import EasyUsage from "../images/easyusage-tran.png";
+import withAutoplay from "react-awesome-slider/dist/autoplay";
+import Clock from "../images/clock.png";
+import Hand from "../images/hand.png";
+import IPhone from "../images/IPhone_view.jpeg";
 import { style } from "../themes/configs";
+import parkedCar from "../images/parked_car_unsplash.jpeg";
+import shakehands from "../images/shakehands.png";
+import audiParked from "../images/audiparked.jpeg";
+import "react-awesome-slider/dist/styles.css";
+import AwesomeSlider from "react-awesome-slider";
 
 export default function Home() {
+  const AutoplaySlider = withAutoplay(AwesomeSlider);
   return (
     <>
       <Box
+        boxShadow="0px 1px 10px black"
         bg={style.darkgray}
         bgGradient="linear(to-tr, blue,blue.400,blue.100)"
         // bgGradient="linear(to-tr, purple,purple.400,purple.100)"
@@ -83,14 +89,18 @@ export default function Home() {
               _focus={{ outline: "none" }}
               p={7}
               mt={14}
-              onClick={() => {
-                console.log("Take me to the f*cking form");
-              }}
             >
-              Sign up as a host!
+              <Link
+                _focus={{ outline: "none" }}
+                _hover={{ textStyle: "no-underline" }}
+                href="https://f1n3e2z1bc4.typeform.com/to/PbGrnsxz"
+                isExternal
+              >
+                Sign up as a host!
+              </Link>
             </Button>
           </Box>
-          <Box w="100%">
+          <Box w="85%">
             <Box h="440px" w="220px" mb={5}>
               <Image src={IPhone.src} w="100%" h="100%" />
             </Box>
@@ -98,6 +108,7 @@ export default function Home() {
         </Flex>
       </Box>
       <Flex
+        p={5}
         m="1% auto"
         justify="center"
         justifyContent="space-evenly"
@@ -105,7 +116,12 @@ export default function Home() {
         id="features"
       >
         <Flex id="easy-usage" {...style.featuresContainers}>
-          <Center>(IMAGE HERE)</Center>
+          <Center p={3} w="100%">
+            <Box h="120px" w="120px">
+              <Image src={EasyUsage.src} h="100%" w="100%" />
+            </Box>
+            {/* TODO: */}
+          </Center>
           <Heading {...style.featuresHeading}>Easy to use</Heading>
           <br />
           <Text textAlign="center">
@@ -114,7 +130,11 @@ export default function Home() {
           </Text>
         </Flex>
         <Flex id="book-in-minute" {...style.featuresContainers} ml={5}>
-          <Center>(IMAGE HERE)</Center>
+          <Center p={3} w="100%">
+            <Box h="120px" w="120px">
+              <Image src={Clock.src} h="100%" w="100%" />
+            </Box>
+          </Center>
           <Heading {...style.featuresHeading}>Book within a minute</Heading>
           <br />
           <Text textAlign="center">
@@ -123,7 +143,11 @@ export default function Home() {
           </Text>
         </Flex>
         <Flex {...style.featuresContainers} ml={5}>
-          <Center>(IMAGE HERE)</Center>
+          <Center p={3} w="100%">
+            <Box h="120px" w="120px">
+              <Image src={Hand.src} h="100%" w="100%" />
+            </Box>
+          </Center>
           <Heading {...style.featuresHeading}>Book anytime for cheap</Heading>
           <br />
           <Text textAlign="center">
@@ -132,6 +156,7 @@ export default function Home() {
           </Text>
         </Flex>
       </Flex>
+      {/* TODO: */}
       <Center id="how-it-works" p={10} bg="gray.100" flexDir="column">
         <Heading fontSize="4xl">Here's how it works</Heading>
         <br />
@@ -155,14 +180,42 @@ export default function Home() {
               'auto-book' on. You can also set availabilities for when you'd
               like people to park on your driveway!
             </Text>
+
+            {/*  */}
           </Box>
         </Flex>
         {/* <Box>
           <Text fontSize="2xl">
-            The app isn't launched yet, but sign up to receive an email once the
-            application has been launched and is ready to use!{" "}
+          The app isn't launched yet, but sign up to receive an email once the
+          application has been launched and is ready to use!{" "}
           </Text>
         </Box> */}
+        {/* TODO:TODO:TODO: */}
+
+        <Flex p={20} w="70%" justifyContent="space-between">
+          {/* <Box h="220px" w="260px">
+            <Image borderRadius="50%" h="100%" w="100%" src={parkedCar.src} />
+          </Box>
+          <Box h="220px" w="260px">
+            <Image borderRadius="50%" h="100%" w="100%" src={parkedCar.src} />
+          </Box> */}
+          <AutoplaySlider
+            play={true}
+            interval={3000}
+            style={{ width: "30vw", margin: "0 auto", background: "none" }}
+            animation="cubeAnimation"
+          >
+            <Box>
+              <Image h="100%" w="100%" src={parkedCar.src} />
+            </Box>
+            <Center>
+              <Image backgroundColor="gray.100" p={20} src={shakehands.src} />
+            </Center>
+            <Box>
+              <Image src={audiParked.src} />
+            </Box>
+          </AutoplaySlider>
+        </Flex>
       </Center>
       <Flex id="footer" justifyContent="flex-end">
         <Button m={7}>Instagram</Button>
