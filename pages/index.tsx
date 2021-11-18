@@ -6,8 +6,9 @@ import {
   Text,
   Button,
   Image,
-  Link,
+  Link as LinkChakra,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import EasyUsage from "../images/easyusage-tran.png";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import Clock from "../images/clock.png";
@@ -45,15 +46,17 @@ export default function Home() {
           <Heading>(SpotIt Logo)</Heading>
           <Flex>
             <Button {...style.navButton}>
-              <Link
+              <LinkChakra
                 _focus={{ outline: "none" }}
                 _hover={{ textStyle: "no-underline" }}
                 href="#how-it-works"
               >
                 How it works
-              </Link>{" "}
+              </LinkChakra>{" "}
             </Button>
-            <Button {...style.navButton}>Sign up</Button>
+            <Button {...style.navButton}>
+              <Link href="/userInputForm">Sign up</Link>
+            </Button>
           </Flex>
         </Flex>
         {/* <Center h="80vh">
@@ -91,10 +94,8 @@ export default function Home() {
               mt={14}
             >
               <Link
-                _focus={{ outline: "none" }}
-                _hover={{ textStyle: "no-underline" }}
-                href="https://f1n3e2z1bc4.typeform.com/to/PbGrnsxz"
-                isExternal
+                // href="https://f1n3e2z1bc4.typeform.com/to/PbGrnsxz"
+                href="/userInputForm"
               >
                 Sign up as a host!
               </Link>
@@ -115,40 +116,53 @@ export default function Home() {
         w="75%"
         id="features"
       >
-        <Flex id="easy-usage" {...style.featuresContainers}>
+        <Flex id="easy-usage" maxW="33%" flexDir="column" p={3} mr={5}>
           <Center p={3} w="100%">
             <Box h="120px" w="120px">
               <Image src={EasyUsage.src} h="100%" w="100%" />
             </Box>
             {/* TODO: */}
           </Center>
-          <Heading {...style.featuresHeading}>Easy to use</Heading>
+          <Heading fontSize="lg" fontWeight="500" textAlign="center">
+            Easy to use
+          </Heading>
           <br />
           <Text textAlign="center">
             UI designed to fit your every needs. Minimal and simple
             functionality to make parking bookings even quicker!
           </Text>
         </Flex>
-        <Flex id="book-in-minute" {...style.featuresContainers} ml={5}>
+        <Flex
+          id="book-in-minute"
+          maxW="33%"
+          flexDir="column"
+          p={3}
+          mr={5}
+          ml={5}
+        >
           <Center p={3} w="100%">
             <Box h="120px" w="120px">
               <Image src={Clock.src} h="100%" w="100%" />
             </Box>
           </Center>
-          <Heading {...style.featuresHeading}>Book within a minute</Heading>
+          <Heading fontSize="lg" fontWeight="500" textAlign="center">
+            Book within a minute
+          </Heading>
           <br />
           <Text textAlign="center">
             Booking a parking spot is as easy as pressing two buttons, press the
             spot you want, then press the book button!{" "}
           </Text>
         </Flex>
-        <Flex {...style.featuresContainers} ml={5}>
+        <Flex maxW="33%" flexDir="column" p={3} mr={5} ml={5}>
           <Center p={3} w="100%">
             <Box h="120px" w="120px">
               <Image src={Hand.src} h="100%" w="100%" />
             </Box>
           </Center>
-          <Heading {...style.featuresHeading}>Book anytime for cheap</Heading>
+          <Heading fontSize="lg" fontWeight="500" textAlign="center">
+            Book anytime for cheap
+          </Heading>
           <br />
           <Text textAlign="center">
             As long as people are hostin' you're bookin'. Book a parking spot
