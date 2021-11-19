@@ -1,17 +1,35 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { Collection, MongoClient } from "mongodb";
+import { User } from "../../interfaces/types";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    // const url = `mongodb://mongo:${process.env.NEXT_PUBLIC_MONGO_URL}@containers-us-west-2.railway.app:5624`;
-    //     const client = new MongoClient(url);
+    const url = `mongodb://mongo:${process.env.NEXT_PUBLIC_MONGODB_CONNECTION_URL}@containers-us-west-4.railway.app:7886`;
+    const client = new MongoClient(url);
+    await client.connect();
+    const db = client.db("users");
 
-    //     await client.connect();
-    //     // Database name 'mydb'
-    //     const db = client.db("test");
-    // const drivers = db.collection('drivers');
-    // const hosts = db.collection('hosts');
-    if (req.method === "POST") res.status(200).json({ name: "John Doe" });
+    const drivers = db.collection("drivers");
+    const hosts = db.collection("hosts");
+    const { data } = JSON.parse(req.body);
+
+    if (req.method === "POST" && data.Status == "host")
+      await hosts.insertOne(data);
+
+    if (req.method === "POST" && data.Status == "driver")
+      await drivers.insertOne(data);
+
+    res.json({});
   } catch (err) {
-    res.status(404).json({ err });
+    res.status(404).json({ err: err.message });
   }
-}
+};
+
+export default handler;
+// const postHostToDB=(req:NextApiRequest,res:NextApiResponse,data:User,DB:Collection)=>{
+//   try {
+
+//   } catch (err) {
+//     res.status(400).json({err:err.message})
+//   }
+// }
